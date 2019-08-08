@@ -1,0 +1,50 @@
+﻿@model Blog161.ViewModel.VmComentariosMensagem
+
+@{
+    ViewData["Title"] = "Mensagens";
+}
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@foreach (var item in Model.Mensagens)
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <span class="blockquote-footer float-left">@Html.DisplayFor(modelItem => item.Categoria.Descricao)</span>
+            <div class="text-center">
+                <h5 class="card-title">@item.Titulo</h5>
+            </div>
+            <div class="float-right">
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <p> "@Html.DisplayFor(modelItem => item.Descricao)"</p>
+            <h5 class="card-title">Comentários</h5>
+            <div class="row">
+
+                @foreach (var item2 in Model.Comentarios)
+                {
+                    @if (item2.MensagemId == item.Id)
+                    {
+                        <div class="col-sm-6">
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item2.Titulo</h5>
+                                    <p class="card-text">@item2.Descricao</p>
+                                    <span class="blockquote-footer float-left">@item2.Autor - @item2.Data</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <a asp-action="Create" asp-controller="Comentario" class="btn btn-primary float-right">Comentar</a>
+
+        </div>
+        <div class="card-footer text-muted">
+            @item.Data
+        </div>
+    </div>
+}
