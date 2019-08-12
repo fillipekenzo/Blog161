@@ -4,7 +4,7 @@
     ViewData["Title"] = "Mensagens";
 }
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success btn-sm" asp-action="Create">Escrever Mensagem</a>
 </p>
 @foreach (var item in Model.Mensagens)
 {
@@ -15,7 +15,7 @@
                 <h5 class="card-title">@item.Titulo</h5>
             </div>
             <div class="float-right">
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
             </div>
         </div>
         <div class="card-body">
@@ -40,7 +40,7 @@
                 }
             </div>
 
-            <a asp-action="Create" asp-controller="Comentario" class="btn btn-primary float-right">Comentar</a>
+            <a asp-action="Create" asp-controller="Comentario" asp-route-id="@item.Id" class="btn btn-primary float-right">Comentar</a>
 
         </div>
         <div class="card-footer text-muted">

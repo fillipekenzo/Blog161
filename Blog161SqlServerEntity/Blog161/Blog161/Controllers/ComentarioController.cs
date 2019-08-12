@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -46,9 +45,10 @@ namespace Blog161.Controllers
         }
 
         // GET: Comentario/Create
-        public IActionResult Create()
+        public async Task<ActionResult> Create(int id)
         {
-            ViewData["MensagemId"] = new SelectList(_context.Mensagem, "Id", "Titulo");
+            var mensagem = await _context.Mensagem.FindAsync(id);
+            ViewBag.Mensagem = mensagem;
             return View();
         }
 
@@ -57,17 +57,19 @@ namespace Blog161.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Descricao,Data,Autor,MensagemId")] Comentario comentario)
+        public async Task<IActionResult> Create(int id, [Bind("Id,Titulo,Descricao,Data,Autor,MensagemId")] Comentario comentario)
         {
             if (ModelState.IsValid)
             {
+                comentario.MensagemId = id;
                 comentario.Data = DateTime.Now;
                 _context.Add(comentario);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), nameof(Mensagem));
             }
             ViewData["MensagemId"] = new SelectList(_context.Mensagem, "Id", "Titulo", comentario.MensagemId);
             var vm = new VmComentariosMensagem();
+
             return View(vm);
         }
 
