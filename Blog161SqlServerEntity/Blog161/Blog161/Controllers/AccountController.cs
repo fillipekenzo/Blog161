@@ -34,7 +34,7 @@ namespace Blog161.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(loginModel.UserName, loginModel.Password, loginModel.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(loginModel.Username, loginModel.Senha, loginModel.RememberMe, false);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
@@ -64,25 +64,23 @@ namespace Blog161.Controllers
             {
                 User user = new User
                 {
-                    FirstName = registerModel.FirstName,
-                    LastName = registerModel.LastName,
-                    UserName = registerModel.UserName,
-                    PhoneNumber = registerModel.PhoneNumber,
+                    Nome = registerModel.Nome,
+                    UserName = registerModel.Username,
                     Email = registerModel.Email
                 };
 
-                var result = await _userManager.CreateAsync(user, registerModel.Password);
+                var result = await _userManager.CreateAsync(user, registerModel.Senha);
                 if (result.Succeeded)
                 {
-                    bool roleExists = await _roleManager.RoleExistsAsync(registerModel.RoleName);
+                    bool roleExists = await _roleManager.RoleExistsAsync(registerModel.Grupo);
                     if (!roleExists)
                     {
-                        await _roleManager.CreateAsync(new IdentityRole(registerModel.RoleName));
+                        await _roleManager.CreateAsync(new IdentityRole(registerModel.Grupo));
                     }
 
-                    if (!await _userManager.IsInRoleAsync(user, registerModel.RoleName))
+                    if (!await _userManager.IsInRoleAsync(user, registerModel.Grupo))
                     {
-                        await _userManager.AddToRoleAsync(user, registerModel.RoleName);
+                        await _userManager.AddToRoleAsync(user, registerModel.Grupo);
                     }
 
                     if (!string.IsNullOrWhiteSpace(user.Email))
@@ -91,7 +89,7 @@ namespace Blog161.Controllers
                         await _userManager.AddClaimAsync(user, claim);
                     }
 
-                    var resultSignIn = await _signInManager.PasswordSignInAsync(registerModel.UserName, registerModel.Password, registerModel.RememberMe, false);
+                    var resultSignIn = await _signInManager.PasswordSignInAsync(registerModel.Username, registerModel.Senha, registerModel.RememberMe, false);
                     if (resultSignIn.Succeeded)
                     {
                         return RedirectToAction("Index", "Home");

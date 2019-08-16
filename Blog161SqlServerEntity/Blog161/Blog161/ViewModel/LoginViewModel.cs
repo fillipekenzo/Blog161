@@ -4,15 +4,15 @@ namespace Blog161.ViewModel
 {
     public class LoginViewModel
     {
-        [Display(Name = "User Name")]
-        [Required(ErrorMessage = "Please enter your user name.")]
-        public string UserName { get; set; }
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Por favor entre com seu username.")]
+        public string Username { get; set; }
 
-        [Display(Name = "Password")]
-        [Required(ErrorMessage = "Please enter your password.")]
-        public string Password { get; set; }
+        [Display(Name = "Senha")]
+        [Required(ErrorMessage = "Por favor entre com sua senha.")]
+        public string Senha { get; set; }
 
-        [Display(Name = "Remember Me")]
+        [Display(Name = "Guardar login")]
         public bool RememberMe { get; set; }
     }
 }

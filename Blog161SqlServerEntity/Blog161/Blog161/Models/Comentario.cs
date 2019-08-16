@@ -12,7 +12,6 @@ namespace Blog161.Models
         public DateTime Data { get; set; }
         public string Autor { get; set; }
         public int MensagemId { get; set; }
-        [DisplayName("Mensagem")]
         [ForeignKey("MensagemId")]
         public Mensagem Mensagem { get; set; }
         [InverseProperty("Comentarios")]

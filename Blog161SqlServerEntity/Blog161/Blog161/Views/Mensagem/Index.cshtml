@@ -46,8 +46,13 @@
                 }
             </div>
             @if (User.IsInRole("Administrador") || User.IsInRole("Membro"))
-            {
-                <a asp-action="Create" asp-controller="Comentario" asp-route-id="@item.Id" class="btn btn-primary float-right">Comentar</a>
+             {
+                  var parms = new Dictionary<string, string>
+                  {
+                      { "id", item.Id.ToString() },
+                      { "autor", User.Identity.Name }
+                  };
+                <a asp-action="Create" asp-controller="Comentario" asp-route-id="@item.Id"  asp-route-autor="@User.Identity.Name.ToString()" class="btn btn-primary float-right">Comentar</a>
             }
         </div>
         <div class="card-footer text-muted">

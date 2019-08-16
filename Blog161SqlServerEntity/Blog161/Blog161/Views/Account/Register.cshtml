@@ -9,24 +9,10 @@
         <form class="submit-form" method="post" enctype="multipart/form-data" asp-action="Register">
             <div asp-validation-summary="ModelOnly"></div>
             <div class="form-group row">
-                <label asp-for="FirstName" class="col-sm-4 col-form-label"></label>
+                <label asp-for="Nome" class="col-sm-4 col-form-label"></label>
                 <div class="col-sm-6">
-                    <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name" required>
-                    <span asp-validation-for="FirstName"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label asp-for="LastName" class="col-sm-4 col-form-label"></label>
-                <div class="col-sm-6">
-                    <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name" required>
-                    <span asp-validation-for="LastName"></span>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label asp-for="PhoneNumber" class="col-sm-4 col-form-label"></label>
-                <div class="col-sm-6">
-                    <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="Phone Number" required>
-                    <span asp-validation-for="PhoneNumber"></span>
+                    <input asp-for="Nome" type="text" class="form-control" placeholder="Nome" required>
+                    <span asp-validation-for="Nome"></span>
                 </div>
             </div>
             <div class="form-group row">
@@ -37,23 +23,23 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label asp-for="UserName" class="col-sm-4 col-form-label"></label>
+                <label asp-for="Username" class="col-sm-4 col-form-label"></label>
                 <div class="col-sm-6">
-                    <input asp-for="UserName" type="tel" class="form-control" placeholder="User Name" required>
-                    <span asp-validation-for="UserName"></span>
+                    <input asp-for="Username" type="tel" class="form-control" placeholder="User Name" required>
+                    <span asp-validation-for="Username"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label asp-for="Password" class="col-sm-4 col-form-label"></label>
+                <label asp-for="Senha" class="col-sm-4 col-form-label"></label>
                 <div class="col-sm-6">
-                    <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
-                    <span asp-validation-for="Password"></span>
+                    <input asp-for="Senha" type="password" class="form-control" placeholder="Password" required>
+                    <span asp-validation-for="Senha"></span>
                 </div>
             </div>
             <div class="form-group row">
-                <label asp-for="RoleName" class="col-sm-4 col-form-label"></label>
+                <label asp-for="Grupo" class="col-sm-4 col-form-label"></label>
                 <div class="col-sm-6">
-                    <select asp-for="RoleName" class="form-control">
+                    <select asp-for="Grupo" class="form-control">
                         <option selected>Membro</option>
                         <option>Administrador</option>
                     </select>
@@ -62,14 +48,13 @@
             <div class="form-group row">
                 <div class="col-sm-10">
                     <button type="submit" class="btn btn-success">
-                        Register
+                        Cadastrar
                     </button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-
 
 @section Scripts{
     <script src="~/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>

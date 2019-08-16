@@ -11,8 +11,7 @@ using Blog161.Data;
 
 namespace Blog161.Controllers
 {
-    [Authorize(Policy = "RequireEmail")]
-    [Authorize(Roles = "Administrador")]
+    [Authorize]
     public class ComentarioController : Controller
     {
         private readonly BlogContext _context;
@@ -49,6 +48,7 @@ namespace Blog161.Controllers
         }
 
         // GET: Comentario/Create
+        [Authorize]
         public async Task<ActionResult> Create(int id)
         {
             var mensagem = await _context.Mensagem.FindAsync(id);
@@ -61,20 +61,20 @@ namespace Blog161.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, [Bind("Id,Titulo,Descricao,Data,Autor,MensagemId")] Comentario comentario)
+        public async Task<IActionResult> Create(int id,[Bind("Id,Titulo,Descricao,Data,Autor,MensagemId")] Comentario comentario)
         {
             if (ModelState.IsValid)
             {
-                comentario.MensagemId = id;
+                comentario.MensagemId = id; 
                 comentario.Data = DateTime.Now;
                 _context.Add(comentario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index), nameof(Mensagem));
             }
             ViewData["MensagemId"] = new SelectList(_context.Mensagem, "Id", "Titulo", comentario.MensagemId);
-            var vm = new VmComentariosMensagem();
+            
 
-            return View(vm);
+            return View(comentario);
         }
 
         // GET: Comentario/Edit/5
