@@ -16,5 +16,7 @@ namespace Blog161.Models
         [ForeignKey("CategoriaId")]
         public Categoria Categoria { get; set; }
         public ICollection<Comentario> Comentarios{ get; set; }
+        [InverseProperty("Mensagens")]
+        public virtual User User { get; set; }
     }
 }

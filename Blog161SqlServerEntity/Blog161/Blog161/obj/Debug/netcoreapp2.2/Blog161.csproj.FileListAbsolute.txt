@@ -88,3 +88,6 @@ C:\Users\Fabrica\Documents\Blog\Blog161\Blog161SqlServerEntity\Blog161\Blog161\o
 C:\Users\Fabrica\Documents\Blog\Blog161\Blog161SqlServerEntity\Blog161\Blog161\obj\Debug\netcoreapp2.2\Blog161.dll
 C:\Users\Fabrica\Documents\Blog\Blog161\Blog161SqlServerEntity\Blog161\Blog161\obj\Debug\netcoreapp2.2\Blog161.pdb
 C:\Users\Fabrica\Documents\Blog\Blog161\Blog161SqlServerEntity\Blog161\Blog161\obj\Debug\netcoreapp2.2\Blog161.csproj.CopyComplete
+C:\Users\Fabrica\Documents\Blog\Blog161\Blog161SqlServerEntity\Blog161\Blog161\obj\Debug\netcoreapp2.2\Razor\Views\Account\Login.g.cshtml.cs
+C:\Users\Fabrica\Documents\Blog\Blog161\Blog161SqlServerEntity\Blog161\Blog161\obj\Debug\netcoreapp2.2\Razor\Views\Account\Register.g.cshtml.cs
+C:\Users\Fabrica\Documents\Blog\Blog161\Blog161SqlServerEntity\Blog161\Blog161\obj\Debug\netcoreapp2.2\Razor\Views\Account\AccessDenied.g.cshtml.cs

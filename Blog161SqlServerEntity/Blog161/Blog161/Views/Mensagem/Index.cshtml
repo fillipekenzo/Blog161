@@ -4,7 +4,10 @@
     ViewData["Title"] = "Mensagens";
 }
 <p>
-    <a class="btn btn-success btn-sm" asp-action="Create">Escrever Mensagem</a>
+    @if (User.IsInRole("Administrador") || User.IsInRole("Membro")) 
+    {
+        <a class="btn btn-success btn-sm" asp-action="Create">Escrever Mensagem</a>
+    }
 </p>
 @foreach (var item in Model.Mensagens)
 {
@@ -15,7 +18,10 @@
                 <h5 class="card-title">@item.Titulo</h5>
             </div>
             <div class="float-right">
-                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                }
             </div>
         </div>
         <div class="card-body">
@@ -39,9 +45,10 @@
                     }
                 }
             </div>
-
-            <a asp-action="Create" asp-controller="Comentario" asp-route-id="@item.Id" class="btn btn-primary float-right">Comentar</a>
-
+            @if (User.IsInRole("Administrador") || User.IsInRole("Membro"))
+            {
+                <a asp-action="Create" asp-controller="Comentario" asp-route-id="@item.Id" class="btn btn-primary float-right">Comentar</a>
+            }
         </div>
         <div class="card-footer text-muted">
             @item.Data

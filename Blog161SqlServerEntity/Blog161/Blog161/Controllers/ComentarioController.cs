@@ -6,9 +6,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blog161.Models;
 using Blog161.ViewModel;
+using Microsoft.AspNetCore.Authorization;
+using Blog161.Data;
 
 namespace Blog161.Controllers
 {
+    [Authorize(Policy = "RequireEmail")]
+    [Authorize(Roles = "Administrador")]
     public class ComentarioController : Controller
     {
         private readonly BlogContext _context;

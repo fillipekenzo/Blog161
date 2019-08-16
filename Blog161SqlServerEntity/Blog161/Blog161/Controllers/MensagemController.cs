@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blog161.Models;
 using Blog161.ViewModel;
+using Microsoft.AspNetCore.Authorization;
+using Blog161.Data;
 
 namespace Blog161.Controllers
 {
@@ -20,6 +22,7 @@ namespace Blog161.Controllers
         }
 
         // GET: Mensagem
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var blogContext = _context.Mensagem.Include(m => m.Categoria);
@@ -35,6 +38,7 @@ namespace Blog161.Controllers
         }
 
         // GET: Mensagem/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -54,6 +58,7 @@ namespace Blog161.Controllers
         }
 
         // GET: Mensagem/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Descricao");
@@ -65,6 +70,7 @@ namespace Blog161.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Titulo,Descricao,Data,CategoriaId")] Mensagem mensagem)
         {
             if (ModelState.IsValid)
@@ -79,6 +85,7 @@ namespace Blog161.Controllers
         }
 
         // GET: Mensagem/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -100,6 +107,7 @@ namespace Blog161.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descricao,Data,CategoriaId")] Mensagem mensagem)
         {
             if (id != mensagem.Id)
@@ -132,6 +140,7 @@ namespace Blog161.Controllers
         }
 
         // GET: Mensagem/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -153,6 +162,7 @@ namespace Blog161.Controllers
         // POST: Mensagem/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var mensagem = await _context.Mensagem.FindAsync(id);
