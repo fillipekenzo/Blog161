@@ -14,7 +14,6 @@ namespace Blog161.Models
         public int MensagemId { get; set; }
         [ForeignKey("MensagemId")]
         public Mensagem Mensagem { get; set; }
-        [InverseProperty("Comentarios")]
         public virtual User User { get; set; }
     }
 }
