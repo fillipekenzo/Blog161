@@ -92,6 +92,8 @@ namespace Blog161.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Autor");
+
                     b.Property<int>("CategoriaId");
 
                     b.Property<DateTime>("Data");

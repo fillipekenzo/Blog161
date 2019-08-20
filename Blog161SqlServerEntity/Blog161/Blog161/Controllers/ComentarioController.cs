@@ -22,6 +22,7 @@ namespace Blog161.Controllers
         }
 
         // GET: Comentario
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Index()
         {
             var blogContext = _context.Comentario.Include(c => c.Mensagem);
@@ -29,6 +30,7 @@ namespace Blog161.Controllers
         }
 
         // GET: Comentario/Details/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -61,10 +63,11 @@ namespace Blog161.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id,[Bind("Id,Titulo,Descricao,Data,Autor,MensagemId,User")] Comentario comentario)
+        public async Task<IActionResult> Create(int id,[Bind("Titulo,Descricao,Data,Autor,MensagemId")] Comentario comentario)
         {
             if (ModelState.IsValid)
             {
+                comentario.Autor = User.Identity.Name;
                 comentario.MensagemId = id; 
                 comentario.Data = DateTime.Now;
                 _context.Add(comentario);
@@ -78,6 +81,7 @@ namespace Blog161.Controllers
         }
 
         // GET: Comentario/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -131,6 +135,7 @@ namespace Blog161.Controllers
         }
 
         // GET: Comentario/Delete/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

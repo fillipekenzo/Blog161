@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Blog161.Migrations
 {
-    public partial class First : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -176,6 +176,7 @@ namespace Blog161.Migrations
                     Titulo = table.Column<string>(nullable: true),
                     Descricao = table.Column<string>(nullable: true),
                     Data = table.Column<DateTime>(nullable: false),
+                    Autor = table.Column<string>(nullable: true),
                     CategoriaId = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },

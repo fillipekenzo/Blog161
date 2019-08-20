@@ -12,6 +12,7 @@ namespace Blog161.Models
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public DateTime Data { get; set; }
+        public string Autor { get; set; }
         public int CategoriaId { get; set; }
         [ForeignKey("CategoriaId")]
         public Categoria Categoria { get; set; }

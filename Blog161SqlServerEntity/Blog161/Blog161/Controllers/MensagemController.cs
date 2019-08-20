@@ -74,6 +74,7 @@ namespace Blog161.Controllers
         {
             if (ModelState.IsValid)
             {
+                mensagem.Autor = User.Identity.Name;
                 mensagem.Data = DateTime.Now;
                 _context.Add(mensagem);
                 await _context.SaveChangesAsync();
